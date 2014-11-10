@@ -74,15 +74,18 @@ class Sign {
      * the outcome of comparing two signs
      * @param first the first sign
      * @param second the second sign
-     * @param the maximum number of signs in the hand
      * @return -1 if the first sign wins, 0 for a tie, 1 if the second sign wins
      */
-    static int outcome(Sign first, Sign second, int maxSigns) {
-        // each sign "i" wins on all signs in the form "i+2*j mod n",
-        // where "n" is the maximum number of signs
+    static int outcome(Sign first, Sign second) {
+        // each sign "i" wins on all next signs in the form "i+2*j"
+        // this has the property of preserving existing win/lose relationships
+        // across different numbers of maximum signs
         if(first.id == second.id) return 0
-        int delta = (maxSigns + second.id - first.id) % maxSigns
-        return (delta % 2 == 0) ? -1: 1
+        if(first.id < second.id) {
+            int delta = second.id - first.id
+            return (delta % 2 == 0) ? -1: 1
+        }
+        return -outcome(second, first)
     }
 
     /**

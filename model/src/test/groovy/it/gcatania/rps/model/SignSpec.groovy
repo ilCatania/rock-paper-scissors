@@ -27,23 +27,25 @@ class SignSpec extends Specification {
     }
 
     @Unroll
-    def "outcome of sign #s1 vs sign #s2 among #n signs is #o"() {
-        expect: Sign.outcome(new Sign(s1), new Sign(s2), n) == o
+    def "outcome of sign #s1 vs sign #s2 signs is #o"() {
+        expect: Sign.outcome(new Sign(s1), new Sign(s2)) == o
 
         where:
-        s1 | s2 | n || o
-        2 | 1 | 3 || -1
-        2 | 1 | 5 || -1
-        2 | 1 | 7 || -1
-        3 | 0 | 5 || -1
-        5 | 0 | 9 || -1
-        0 | 0 | 3 || 0
-        0 | 0 | 9 || 0
-        1 | 2 | 3 || 1
-        1 | 2 | 5 || 1
-        1 | 2 | 7 || 1
-        0 | 3 | 5 || 1
-        0 | 5 | 9 || 1
+        s1 | s2 || o
+        2 | 1 || -1
+        2 | 1 || -1
+        2 | 1 || -1
+        3 | 0 || -1
+        5 | 0 || -1
+        0 | 2 || -1
+        0 | 0 || 0
+        9 | 9 || 0
+        1 | 2 || 1
+        1 | 2 || 1
+        1 | 2 || 1
+        0 | 3 || 1
+        0 | 5 || 1
+        2 | 0 || 1
     }
 
     @Unroll
@@ -56,6 +58,7 @@ class SignSpec extends Specification {
 
         where:
         winner | loser || msg
+        // from http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock#Rules
         2 | 1 || 'Scissors cut Paper'
         1 | 0 || 'Paper covers Rock'
         0 | 4 || 'Rock crushes Lizard'
