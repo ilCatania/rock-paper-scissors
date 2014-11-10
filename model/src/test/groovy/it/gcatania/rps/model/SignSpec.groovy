@@ -54,7 +54,7 @@ class SignSpec extends Specification {
         Sign w = new Sign(winner)
         Sign l = new Sign(loser)
         String verb = Sign.getVictoryVerb(w, l)
-        "${w.name} $verb ${l.name}" == msg
+        Sign.outcome(w, l) == -1 && "${w.name} $verb ${l.name}" == msg
 
         where:
         winner | loser || msg

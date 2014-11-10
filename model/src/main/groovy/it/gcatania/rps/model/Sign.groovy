@@ -30,25 +30,51 @@ class Sign {
         }
     }
 
-    private static Map<SignCombination, String> victoryVerbs
+    private static final Map<SignCombination, String> VICTORY_VERBS
     static {
-        victoryVerbs = [:]
-        victoryVerbs[new SignCombination(2, 1)] = 'cut'
-        victoryVerbs[new SignCombination(1, 0)] = 'covers'
-        victoryVerbs[new SignCombination(0, 4)] = 'crushes'
-        victoryVerbs[new SignCombination(4, 3)] = 'poisons'
-        victoryVerbs[new SignCombination(3, 2)] = 'smashes'
-        victoryVerbs[new SignCombination(2, 4)] = 'decapitate'
-        victoryVerbs[new SignCombination(4, 1)] = 'eats'
-        victoryVerbs[new SignCombination(1, 3)] = 'disproves'
-        victoryVerbs[new SignCombination(3, 0)] = 'vaporizes'
-        victoryVerbs[new SignCombination(0, 2)] = 'crushes'
+        VICTORY_VERBS = [:]
+        VICTORY_VERBS[new SignCombination(2, 1)] = 'cut'
+        VICTORY_VERBS[new SignCombination(1, 0)] = 'covers'
+        VICTORY_VERBS[new SignCombination(0, 4)] = 'crushes'
+        VICTORY_VERBS[new SignCombination(4, 3)] = 'poisons'
+        VICTORY_VERBS[new SignCombination(3, 2)] = 'smashes'
+        VICTORY_VERBS[new SignCombination(2, 4)] = 'decapitate'
+        VICTORY_VERBS[new SignCombination(4, 1)] = 'eats'
+        VICTORY_VERBS[new SignCombination(1, 3)] = 'disproves'
+        VICTORY_VERBS[new SignCombination(3, 0)] = 'vaporizes'
+        VICTORY_VERBS[new SignCombination(0, 2)] = 'crushes'
     }
 
-    private final int id
+    static final Sign ROCK = new Sign(0)
+    static final Sign PAPER = new Sign(1)
+    static final Sign SCISSORS = new Sign(2)
+    static final Sign SPOCK = new Sign(3)
+    static final Sign LIZARD = new Sign(4)
+
+    /**
+     * the sign id, 0-based
+     */
+    final int id
 
     Sign(int id) {
         this.id = id
+    }
+
+    /**
+     * the outcome of comparing two signs
+     * @param first the first sign
+     * @param second the second sign
+     * @return -1 if the first sign wins, 0 for a tie, 1 if the second sign wins
+     */
+    static int outcome(Sign first, Sign second) {
+        // each sign "i" wins on all next signs in the form "i+2*j"
+        // this has the property of preserving existing win/lose relationships
+        // across game sessions with different numbers of signs
+        if(first.id == second.id) return 0
+
+        int delta = second.id - first.id
+        int deltaSign = Integer.signum(delta)
+        return (delta % 2 == 0) ? -deltaSign : deltaSign
     }
 
     /**
@@ -65,27 +91,17 @@ class Sign {
         }
     }
 
+    int hashCode() {
+        return id
+    }
+
+    boolean equals(Object other) {
+        return (other instanceof Sign) && id == other.id
+    }
+
     String toString() {
         if(id > 4) return String.valueOf(id)
         return "$id ($name)"
-    }
-
-    /**
-     * the outcome of comparing two signs
-     * @param first the first sign
-     * @param second the second sign
-     * @return -1 if the first sign wins, 0 for a tie, 1 if the second sign wins
-     */
-    static int outcome(Sign first, Sign second) {
-        // each sign "i" wins on all next signs in the form "i+2*j"
-        // this has the property of preserving existing win/lose relationships
-        // across different numbers of maximum signs
-        if(first.id == second.id) return 0
-        if(first.id < second.id) {
-            int delta = second.id - first.id
-            return (delta % 2 == 0) ? -1: 1
-        }
-        return -outcome(second, first)
     }
 
     /**
@@ -94,6 +110,6 @@ class Sign {
      * @return the victory verb, e.g. {@code 'disproves'} for 'Paper disproves Spock' - never null
      */
     static String getVictoryVerb(Sign winner, Sign loser) {
-        return victoryVerbs[new SignCombination(winner, loser)] ?: 'wins over'
+        return VICTORY_VERBS[new SignCombination(winner, loser)] ?: 'wins over'
     }
 }
