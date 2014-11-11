@@ -6,10 +6,13 @@ subprojects {
        mavenCentral()
     }
 
+    ext.sharedLibs = [
+        logback: 'ch.qos.logback:logback-classic:1.1.2'
+    ]
+
     dependencies {
         compile 'org.codehaus.groovy:groovy-all:2.3.7'
         compile 'org.slf4j:slf4j-api:1.7.7'
-        testCompile 'ch.qos.logback:logback-classic:1.1.2'
         testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     }
 
