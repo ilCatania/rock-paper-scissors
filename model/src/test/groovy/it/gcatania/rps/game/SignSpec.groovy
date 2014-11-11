@@ -1,7 +1,7 @@
 /**
  *
  */
-package it.gcatania.rps.model
+package it.gcatania.rps.game
 
 import spock.lang.Specification
 import spock.lang.Unroll
