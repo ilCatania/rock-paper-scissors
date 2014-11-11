@@ -14,6 +14,15 @@ import it.gcatania.rps.game.exception.InvalidGameSettingsException
 class GameSettings {
 
     /**
+     * default settings to play a best-of-three rock/paper/scissors game
+     */
+    static final GameSettings DEFAULT_RPS = new GameSettings(maxSigns: 3, handTimeoutMillis: 4000L, scoreTreshold: 2)
+    /**
+     * recommended settings to play a best-of-five rock/paper/scissors/lizard/spock game
+     */
+    static final GameSettings DEFAULT_RPSLS = new GameSettings(maxSigns: 5, handTimeoutMillis: 6000L, scoreTreshold: 3)
+
+    /**
      * the number of different signs allowed for this session (e.g. three for standard rock-paper-scissors)
      */
     int maxSigns
