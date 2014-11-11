@@ -9,15 +9,12 @@ package it.gcatania.rps.game
 interface Player {
 
     /**
-     * @return the player name (may be null)
-     */
-    String getName()
-
-    /**
      * initiates a playing hand.
+     * @param maxSigns the maximum number of signs allowed (e.g.
+     * three for standard rock-paper-scissors)
      * @param callback the sign choice callback. Each player
      * should take care in calling it before the session time has
      * expired, otherwise he risks automatically losing the hand.
      */
-    void play(PlayerChoiceCallback callback)
+    void play(int maxSigns, PlayerChoiceCallback callback)
 }

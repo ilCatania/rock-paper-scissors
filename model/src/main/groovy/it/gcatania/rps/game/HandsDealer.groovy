@@ -23,15 +23,15 @@ class HandsDealer {
      */
     private static final long CAUTIONARY_TIMEOUT_MARGIN_MILLIS = 25
 
+    private final GameSettings settings
     private final Player[] players
     private final int playerCount
-    private final GameSettings settings
 
 
     HandsDealer(GameSettings settings, Player[] players) {
+        this.settings = settings
         this.players = players
         playerCount = players.length
-        this.settings = settings
     }
 
     protected Sign[] collectPlayerChoices() {
@@ -44,7 +44,7 @@ class HandsDealer {
                 long startMillis = System.currentTimeMillis()
                 log.trace('requesting choice from player {} at {}', playerId, startMillis)
 
-                p.play({ Sign s->
+                p.play(settings.maxSigns, { Sign s->
                     long choiceTimeMillis = System.currentTimeMillis() - startMillis
                     log.trace('player {} answered within {} millis', playerId, choiceTimeMillis)
 

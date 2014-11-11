@@ -24,9 +24,9 @@ class HandsDealerSpec extends Specification {
         Sign[] choices = dealer.collectPlayerChoices()
 
         then:
-        p0.play(_) >> { PlayerChoiceCallback c -> c.choose(Sign.ROCK) }
-        p1.play(_) >> { PlayerChoiceCallback c -> c.choose(Sign.PAPER) }
-        p2.play(_) >> { PlayerChoiceCallback c -> c.choose(Sign.SCISSORS) }
+        p0.play(3, _) >> { int maxSigns, PlayerChoiceCallback c -> c.choose(Sign.ROCK) }
+        p1.play(3, _) >> { int maxSigns, PlayerChoiceCallback c -> c.choose(Sign.PAPER) }
+        p2.play(3, _) >> { int maxSigns, PlayerChoiceCallback c -> c.choose(Sign.SCISSORS) }
 
         expect:
         choices.collect({it.id}) == [0, 1, 2]
@@ -45,8 +45,8 @@ class HandsDealerSpec extends Specification {
         Sign[] choices = dealer.collectPlayerChoices()
 
         then:
-        p0.play(_) >> { PlayerChoiceCallback c -> c.choose(Sign.ROCK) }
-        p1.play(_) >> { PlayerChoiceCallback c ->
+        p0.play(3, _) >> { int maxSigns, PlayerChoiceCallback c -> c.choose(Sign.ROCK) }
+        p1.play(3, _) >> { int maxSigns, PlayerChoiceCallback c ->
             Thread.sleep(300)
             try {
                 c.choose(Sign.PAPER)
@@ -57,7 +57,7 @@ class HandsDealerSpec extends Specification {
                 }
             }
         }
-        p2.play(_) >> { PlayerChoiceCallback c -> c.choose(Sign.SCISSORS) }
+        p2.play(3, _) >> { int maxSigns, PlayerChoiceCallback c -> c.choose(Sign.SCISSORS) }
         async.await()
 
         //        expect:
