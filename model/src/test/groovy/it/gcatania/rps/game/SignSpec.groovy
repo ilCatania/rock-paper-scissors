@@ -53,23 +53,39 @@ class SignSpec extends Specification {
         expect:
         Sign w = new Sign(winner)
         Sign l = new Sign(loser)
-        String verb = Sign.getVictoryVerb(w, l)
-        Sign.outcome(w, l) == -1 && "${w.name} $verb ${l.name}" == msg
+        Sign.outcome(w, l) == -1 && Sign.outcomeString(w, l) == msg
 
         where:
         winner | loser || msg
         // from http://en.wikipedia.org/wiki/Rock-paper-scissors-lizard-Spock#Rules
-        2 | 1 || 'Scissors cut Paper'
-        1 | 0 || 'Paper covers Rock'
-        0 | 4 || 'Rock crushes Lizard'
-        4 | 3 || 'Lizard poisons Spock'
-        3 | 2 || 'Spock smashes Scissors'
-        2 | 4 || 'Scissors decapitate Lizard'
-        4 | 1 || 'Lizard eats Paper'
-        1 | 3 || 'Paper disproves Spock'
-        3 | 0 || 'Spock vaporizes Rock'
-        0 | 2 || 'Rock crushes Scissors'
+        2 | 1 || 'Scissors cut Paper!'
+        1 | 0 || 'Paper covers Rock!'
+        0 | 4 || 'Rock crushes Lizard!'
+        4 | 3 || 'Lizard poisons Spock!'
+        3 | 2 || 'Spock smashes Scissors!'
+        2 | 4 || 'Scissors decapitate Lizard!'
+        4 | 1 || 'Lizard eats Paper!'
+        1 | 3 || 'Paper disproves Spock!'
+        3 | 0 || 'Spock vaporizes Rock!'
+        0 | 2 || 'Rock crushes Scissors!'
         // generic case
-        9 | 11 || '9 wins over 11'
+        9 | 11 || '9 wins over 11!'
+    }
+
+    @Unroll
+    def "outcomeString is simmetric for #n1 and #n2"() {
+        expect:
+        Sign s1 = new Sign(n1)
+        Sign s2 = new Sign(n2)
+        Sign.outcomeString(s1, s2) == Sign.outcomeString(s2, s1)
+
+        where:
+        n1 | n2
+        0 | 1
+        0 | 2
+        0 | 3
+        1 | 2
+        1 | 3
+        2 | 3
     }
 }

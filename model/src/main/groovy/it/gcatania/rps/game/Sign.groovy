@@ -67,10 +67,19 @@ class Sign {
      * @return -1 if the first sign wins, 0 for a tie, 1 if the second sign wins
      */
     static int outcome(Sign first, Sign second) {
+        if(first == null) {
+            if(second == null) {
+                return 0
+            }
+            return 1
+        }
+        if(second == null) return -1
+
         // each sign "i" wins on all next signs in the form "i+2*j"
         // this has the property of preserving existing win/lose relationships
         // across game sessions with different numbers of signs
         if(first.id == second.id) return 0
+
 
         int delta = second.id - first.id
         int deltaSign = Integer.signum(delta)
@@ -101,7 +110,7 @@ class Sign {
 
     String toString() {
         if(id > 4) return String.valueOf(id)
-        return "$id ($name)"
+        return "$name ($id)"
     }
 
     /**
@@ -109,7 +118,11 @@ class Sign {
      * @param loser the losign sign
      * @return the victory verb, e.g. {@code 'disproves'} for 'Paper disproves Spock' - never null
      */
-    static String getVictoryVerb(Sign winner, Sign loser) {
-        return VICTORY_VERBS[new SignCombination(winner, loser)] ?: 'wins over'
+    static String outcomeString(Sign s1, Sign s2) {
+        int o = outcome(s1, s2)
+        if(o == 0) return "Tie!"
+        def (winner, loser) = o < 0 ? [s1, s2]: [s2, s1]
+        String verb = VICTORY_VERBS[new SignCombination(winner?.id ?: -1, loser?.id ?: -1)] ?: 'wins over'
+        return "${winner?.name} $verb ${loser?.name}!"
     }
 }
