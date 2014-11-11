@@ -13,7 +13,7 @@ import it.gcatania.rps.game.Sign
 abstract class BasePlayer implements Player {
 
     @Override
-    public void play(int maxSigns, PlayerChoiceCallback callback) {
+    public void play(int maxSigns, long timeoutMillis, PlayerChoiceCallback callback) {
         int signId = chooseSignId(maxSigns)
         Sign s = new Sign(signId)
         callback.choose(s)

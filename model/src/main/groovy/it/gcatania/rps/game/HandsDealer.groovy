@@ -44,7 +44,7 @@ class HandsDealer {
                 long startMillis = System.currentTimeMillis()
                 log.trace('requesting choice from player {} at {}', playerId, startMillis)
 
-                p.play(settings.maxSigns, { Sign s->
+                p.play(settings.maxSigns, settings.handTimeoutMillis, { Sign s->
                     long choiceTimeMillis = System.currentTimeMillis() - startMillis
                     log.trace('player {} answered within {} millis', playerId, choiceTimeMillis)
 
