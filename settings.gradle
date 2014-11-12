@@ -1,1 +1,1 @@
-include 'model', 'cmdline'
+include 'model', 'rps-cmdline'
