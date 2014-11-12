@@ -1,10 +1,21 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    }
+}
+
 subprojects {
     apply plugin: 'groovy'
     apply plugin: 'eclipse-wtp'
+    apply plugin: 'license'
     apply plugin: 'jacoco' // warning: this requires a gradle version newer than the one (1.4) currently bundled with ubuntu
 
     repositories {
-       mavenCentral()
+        mavenCentral()
     }
 
     ext.sharedLibs = [
@@ -21,5 +32,14 @@ subprojects {
 
     jar {
         manifest.attributes provider: 'gradle'
+    }
+    
+    license {
+        header rootProject.file('src/main/etc/header.txt')
+        strictCheck true
+        excludes(["**/*.txt"])
+        ext.year = Calendar.getInstance().get(Calendar.YEAR)
+        ext.owner = 'Gabriele Catania'
+        ext.email = 'gabriele.ctn@gmail.com'
     }
 }
