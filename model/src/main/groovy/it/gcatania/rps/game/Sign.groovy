@@ -122,7 +122,9 @@ class Sign {
         int o = outcome(s1, s2)
         if(o == 0) return "Tie!"
         def (winner, loser) = o < 0 ? [s1, s2]: [s2, s1]
-        String verb = VICTORY_VERBS[new SignCombination(winner?.id ?: -1, loser?.id ?: -1)] ?: 'wins over'
+        String verb
+        if(winner != null && loser != null) verb = VICTORY_VERBS[new SignCombination(winner.id, loser.id)]
+        if(verb == null) verb = 'wins over'
         return "${winner?.name} $verb ${loser?.name}!"
     }
 }
