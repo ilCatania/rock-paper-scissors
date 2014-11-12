@@ -19,7 +19,7 @@ def mainMenu = new Menu('Welcome to Rock-Paper-Scissors!')
         .addItem('QUICK_PLAY_HUMAN', 'Play a quick 1v1 local match against a friend')
         .addItem('QUICK_SKIRMISH_AI', 'Play a 4-player,5-sign skirmish against the computer')
         .addItem('QUICK_SKIRMISH_HUMAN', 'Play a 4-player,5-sign skirmish against your friends')
-        //        .addItem('ADVANCED_GAME_SETUP', 'Set up a customized game') TODO implement
+        // .addItem('ADVANCED_GAME_SETUP', 'Set up a customized game') TODO implement
         .addItem('TUTORIAL', 'Show the tutorial')
         .addItem('QUIT', 'Exit the game')
 
