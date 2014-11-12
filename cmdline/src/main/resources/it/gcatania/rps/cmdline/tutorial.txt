@@ -1,0 +1,10 @@
+How to play
+===========
+
+The first player that reaches the score treshold wins the game.
+Each hand, players must choose a hand sign before the countdown
+expires. The signs are then matched against each other, and for
+each winning combination against another player's sign (e.g. 
+'Rock crushes Scissors'), you get one point.
+
+Remember to pick a sign before the countdown timer runs out! 

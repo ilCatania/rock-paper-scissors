@@ -1,0 +1,15 @@
+apply plugin: 'application'
+
+run{
+    // workaround to the system console not being available, see 
+    standardInput = System.in
+}
+
+dependencies {
+    compile project(':model')
+    compile 'jline:jline:2.12'
+    compile sharedLibs.logback
+}
+
+mainClassName = 'it.gcatania.rps.cmdline.RpsCommandline'
+
