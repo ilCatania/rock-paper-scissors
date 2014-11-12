@@ -124,13 +124,17 @@ class CommandlineGameClient {
         List<String> keyBindings = kPlayers*.keyBindings
 
         println 'Key bindings:'
-        String str = 'Sign\t\t' + kPlayers*.name*.padRight(TWO_COLS_WIDTH)*.take(TWO_COLS_WIDTH).join('\t')
-        println(str)
+
+        def rows = [
+            ['Sign', kPlayers*.name].flatten()
+        ]
         int l = keyBindings[0].length()
         for(int i = 0; i < l; i++) {
-            Sign s = new Sign(i)
-            println("${s.name}\t" + keyBindings*.charAt(i).join('\t\t'))
+            def row = [new Sign(i).name]
+            row.addAll(keyBindings*.charAt(i))
+            rows.add row
         }
+        Utils.table(rows, true)
         println()
     }
 
@@ -150,14 +154,19 @@ class CommandlineGameClient {
     }
 
     private void printScores(def players, int[] handScores, int[] totalScores) {
-        def scoreMatrix = [
-            players*.name*.padRight(TWO_COLS_WIDTH)*.take(TWO_COLS_WIDTH),
+        def scoreTable = [
+            [
+                'Player',
+                'Hand score',
+                'Total score'
+            ],
+        ]
+        scoreTable.addAll([
+            players*.name,
             handScores,
             totalScores
-        ].transpose()
-        println '\t\t| Hand\t| Total'
-        println '=' * 25
-        scoreMatrix.each { row -> println "${row[0]}\t| ${row[1]}\t| ${row[2]}" }
+        ].transpose())
+        Utils.table(scoreTable, true)
         println()
     }
 
@@ -199,4 +208,5 @@ class CommandlineGameClient {
         }
         println()
     }
+
 }
