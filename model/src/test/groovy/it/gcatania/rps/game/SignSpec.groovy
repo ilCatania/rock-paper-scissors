@@ -23,7 +23,7 @@ class SignSpec extends Specification {
         2 || 'Scissors'
         3 || 'Spock'
         4 || 'Lizard'
-        16 || '16'
+        16 || 'Sign 16'
     }
 
     @Unroll
@@ -69,7 +69,7 @@ class SignSpec extends Specification {
         3 | 0 || 'Spock vaporizes Rock!'
         0 | 2 || 'Rock crushes Scissors!'
         // generic case
-        9 | 11 || '9 wins over 11!'
+        9 | 11 || 'Sign 9 wins over Sign 11!'
     }
 
     @Unroll

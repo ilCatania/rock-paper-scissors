@@ -10,6 +10,7 @@ import it.gcatania.rps.game.GameStatus
 import it.gcatania.rps.game.HandOutcome
 import it.gcatania.rps.game.Player
 import it.gcatania.rps.game.Sign
+import it.gcatania.rps.game.players.DumbAi
 import it.gcatania.rps.game.players.UnpredictableAi
 import jline.console.ConsoleReader
 
@@ -36,10 +37,28 @@ class CommandlineGameClient {
         ] as Player[]))
     }
 
-    void quickPlayFriend() {
+    void quickPlayAgainstFriend() {
         run(new Game(GameSettings.DEFAULT_RPS, [
             new KeyboardInputPlayer("Player left", 'qwe'),
             new KeyboardInputPlayer("Player right", 'iop')
+        ] as Player[]))
+    }
+
+    void quickSkirmishAgainstAi() {
+        run(new Game(GameSettings.DEFAULT_RPSLS, [
+            new KeyboardInputPlayer("Player", 'qwert'),
+            new UnpredictableAi(),
+            new UnpredictableAi(),
+            new DumbAi()
+        ] as Player[]))
+    }
+
+    void quickSkirmishAgainstFriends() {
+        run(new Game(GameSettings.DEFAULT_RPSLS, [
+            new KeyboardInputPlayer("Alice", 'qwasz'),
+            new KeyboardInputPlayer("Bob", 'erdfc'),
+            new KeyboardInputPlayer("Carl", 'tyghb'),
+            new KeyboardInputPlayer("Dave", 'uijkm')
         ] as Player[]))
     }
 
@@ -59,7 +78,8 @@ class CommandlineGameClient {
             HandOutcome o = game.dealHand()
             provider.stopPolling()
 
-            // FIXME next 3 lines are a dirty trick to unlock the poller's last cycle
+            // FIXME next 3 lines are a dirty trick to hide the poller
+            // being stuck on the last character read
             println "Time's up! Press any key to view the results"
             println()
             provider.joinPollerThread()
@@ -109,7 +129,7 @@ class CommandlineGameClient {
         int l = keyBindings[0].length()
         for(int i = 0; i < l; i++) {
             Sign s = new Sign(i)
-            println("${new Sign(i)}\t" + keyBindings*.charAt(i).join('\t\t'))
+            println("${s.name}\t" + keyBindings*.charAt(i).join('\t\t'))
         }
         println()
     }
@@ -158,7 +178,7 @@ class CommandlineGameClient {
         println 'Picks:'
         [playerNames, choices as List].transpose().each { String name, Sign choice ->
             println (choice != null ?
-                    "\t${name} picked:\t${choice}" :
+                    "\t${name} picked:\t${choice.name}" :
                     "\t${name} didn't pick in time!")
         }
         println()

@@ -96,7 +96,7 @@ class Sign {
             case 2: return 'Scissors'
             case 3: return 'Spock'
             case 4: return 'Lizard'
-            default: return String.valueOf(id)
+            default: return "Sign ${id}"
         }
     }
 
@@ -109,7 +109,7 @@ class Sign {
     }
 
     String toString() {
-        if(id > 4) return String.valueOf(id)
+        if(id > 4) return "(no name) ${id}"
         return "$name ($id)"
     }
 
