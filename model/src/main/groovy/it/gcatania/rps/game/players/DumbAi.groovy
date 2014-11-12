@@ -3,7 +3,7 @@ package it.gcatania.rps.game.players
 /**
  * @author ilCatania
  */
-class DumbAi extends BasePlayer{
+class DumbAi extends SynchronousPlayer{
 
     int signId = -1
 

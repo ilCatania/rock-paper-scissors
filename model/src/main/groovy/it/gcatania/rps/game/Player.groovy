@@ -9,6 +9,11 @@ package it.gcatania.rps.game
 interface Player {
 
     /**
+     * @return the player name (may be null)
+     */
+    String getName()
+
+    /**
      * initiates a playing hand.
      * @param maxSigns the maximum number of signs allowed (e.g.
      * three for standard rock-paper-scissors)

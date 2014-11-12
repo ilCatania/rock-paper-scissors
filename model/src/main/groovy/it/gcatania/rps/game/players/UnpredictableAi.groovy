@@ -8,7 +8,7 @@ import it.gcatania.rps.game.PlayerChoiceCallback
 /**
  * @author ilCatania
  */
-class UnpredictableAi extends BasePlayer {
+class UnpredictableAi extends SynchronousPlayer {
 
     private final Random r = new Random()
 
