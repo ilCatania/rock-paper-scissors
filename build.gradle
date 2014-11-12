@@ -1,6 +1,7 @@
 subprojects {
     apply plugin: 'groovy'
     apply plugin: 'eclipse-wtp'
+    apply plugin: 'jacoco' // warning: this requires a gradle version newer than the one (1.4) currently bundled with ubuntu
 
     repositories {
        mavenCentral()
