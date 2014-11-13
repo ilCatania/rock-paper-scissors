@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package it.gcatania.rps.cmdline
 
 import it.gcatania.rps.cmdline.io.CharProvider
@@ -28,6 +28,7 @@ import jline.console.ConsoleReader
 
 
 /**
+ * main game client, takes care of running game instances and displaying relevant information
  * @author ilCatania
  */
 class CommandlineGameClient {

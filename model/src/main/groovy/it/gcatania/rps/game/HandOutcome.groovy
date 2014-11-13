@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package it.gcatania.rps.game
 
 import groovy.transform.EqualsAndHashCode
@@ -20,19 +20,20 @@ import groovy.transform.ToString
 
 
 /**
+ * outcome of a single game hand
  * @author ilCatania
  */
 @EqualsAndHashCode @ToString
 class HandOutcome {
 
     /**
-     * the sign choices for all hand participants, some of which may be null if no choice was made
+     * the sign choices for all game hand participants, some of which may be null if no choice was made
      */
     public final Sign[] playerChoices
     public final int[] scores
 
     /**
-     * @param participantChoices the sign choices for all hand participants
+     * @param participantChoices the sign choices for game all hand participants
      */
     public HandOutcome(Sign[] playerChoices, int[] scores) {
         this.playerChoices = playerChoices

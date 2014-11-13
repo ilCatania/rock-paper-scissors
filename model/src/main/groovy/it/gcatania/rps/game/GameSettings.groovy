@@ -22,6 +22,7 @@ package it.gcatania.rps.game
 import groovy.transform.ToString
 import it.gcatania.rps.game.exception.InvalidGameSettingsException
 
+
 /**
  * @author ilCatania
  */

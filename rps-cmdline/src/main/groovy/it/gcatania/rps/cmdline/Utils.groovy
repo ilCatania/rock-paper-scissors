@@ -12,15 +12,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package it.gcatania.rps.cmdline
 
 /**
  * @author ilCatania
- *
  */
 final class Utils {
 
+    /**
+     * display an ASCII table with the provided data
+     * @param rows the table rows
+     * @param header whether the first row should be treated as header
+     */
     static void table(def rows, boolean header) {
         def rowStrings = rows.collect({it.collect({String.valueOf(it)})})
         def columnWidths = rowStrings.transpose()*.collect({it.length()})*.max()

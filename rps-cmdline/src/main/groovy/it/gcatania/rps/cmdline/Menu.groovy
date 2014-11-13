@@ -12,13 +12,14 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package it.gcatania.rps.cmdline
 
 import jline.console.ConsoleReader
 
 
 /**
+ * utility class to display multiple choice menus in the command line
  * @author ilCatania
  */
 class Menu {
@@ -41,6 +42,9 @@ class Menu {
         return this
     }
 
+    /**
+     * show the menu content
+     */
     void show() {
         println title
         println "=" * title.length()
@@ -52,6 +56,7 @@ class Menu {
     }
 
     /**
+     * show the menu content and ask for a choice from the user
      * @param console the console to read input from
      * @return the id of the selected command
      */
