@@ -84,7 +84,7 @@ class CommandlineGameClient {
         printPlayerKeyBindings(game.players)
 
         while(true) {
-            println "Press any key to start hand number ${game.handCount}"
+            println "Press any key to start hand number ${game.handCount} - first player reaching ${game.settings.scoreTreshold} points wins!"
             console.readCharacter()
             provider.startPolling(5)
             showCountdownAsync(game.settings.handTimeoutMillis)
