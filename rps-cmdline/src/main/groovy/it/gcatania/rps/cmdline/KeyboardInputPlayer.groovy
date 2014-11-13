@@ -67,4 +67,8 @@ class KeyboardInputPlayer implements Player{
     void setProvider(CharProvider provider) {
         this.provider = provider
     }
+
+    String toString() {
+        return "player ${name} (key bindings: ${keyBindings})"
+    }
 }

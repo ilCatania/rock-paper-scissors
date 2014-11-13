@@ -75,8 +75,8 @@ class CommandlineGameClient {
         ] as Player[]))
     }
 
-    void playCustom(GameSettings settings, Player[] players) {
-        run(new Game(settings, players))
+    void playCustom(GameSettings settings, def players) {
+        run(new Game(settings, players as Player[]))
     }
 
     private void run(Game game) {
