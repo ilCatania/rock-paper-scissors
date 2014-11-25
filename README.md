@@ -8,6 +8,7 @@ Battle your friends or the computer with challenging Rock, Paper, Scissors sessi
 - Four different game modes out of the box, and a custom game mode with infinte customization possibilities!
 - Play against your friends (all hands on the same keyboard), or against AIs of varying intelligence!
 - Experience the thrill of picking a hand sign (actually a keystroke) before the timeout expires!
+- Three symbols are not enough for you? Customize your games to also support Lizard and Spock, and unlimited others!
 
 # Known issues
 
