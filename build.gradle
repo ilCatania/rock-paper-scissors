@@ -1,17 +1,18 @@
 buildscript {
-    repositories {
-        jcenter()
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
-
-    dependencies {
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
-    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.16.1"
+  }
 }
 
 subprojects {
     apply plugin: 'groovy'
     apply plugin: 'eclipse-wtp'
-    apply plugin: 'license'
+    apply plugin: 'com.github.hierynomus.license'
     apply plugin: 'jacoco' // warning: this requires a gradle version newer than the one (1.4) currently bundled with ubuntu
 
     repositories {
@@ -23,9 +24,9 @@ subprojects {
     ]
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.3.7'
-        compile 'org.slf4j:slf4j-api:1.7.7'
-        testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+        implementation 'org.codehaus.groovy:groovy-all:2.3.7'
+        implementation 'org.slf4j:slf4j-api:1.7.7'
+        testImplementation 'org.spockframework:spock-core:0.7-groovy-2.0'
     }
 
     version = '1.0'
