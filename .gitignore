@@ -1,5 +1,11 @@
+# gradle
 .gradle
 build/
+
+# eclipse
 .classpath
 .project
 .settings
+
+# vscode
+**/bin/
